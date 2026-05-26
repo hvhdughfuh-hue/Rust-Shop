@@ -1,0 +1,67 @@
+[
+  {
+    "name": "WEAPONS",
+    "label": "Weapons",
+    "description": "Combat loadout for raids, counters, and monument control.",
+    "items": [
+      "AK-47",
+      "LR-300",
+      "M249",
+      "5.56 Ammo x500",
+      "Metal Facemask",
+      "Metal Chestplate",
+      "Syringes x10"
+    ],
+    "visible": true
+  },
+  {
+    "name": "CONSTRUCTION",
+    "label": "Construction",
+    "description": "High-value building parts for stronger bases and fast repairs.",
+    "items": [
+      "Sheet Metal Door x4",
+      "Armored Door x2",
+      "High External Stone Wall x10",
+      "Garage Door x2",
+      "Window Bars x6"
+    ],
+    "visible": true
+  },
+  {
+    "name": "TOOLS",
+    "label": "Tools",
+    "description": "Gathering and utility tools for efficient progression.",
+    "items": [
+      "Jackhammer",
+      "Chainsaw",
+      "Low Grade Fuel x500",
+      "Targeting Computer x2"
+    ],
+    "visible": true
+  },
+  {
+    "name": "RESOURCES",
+    "label": "Resources",
+    "description": "Bulk materials for builds, upkeep, crafting, and raids.",
+    "items": [
+      "Metal Fragments x10,000",
+      "High Quality Metal x500",
+      "Stone x10,000",
+      "Wood x10,000",
+      "Sulfur x5,000"
+    ],
+    "visible": true
+  },
+  {
+    "name": "EXPLOSIVES",
+    "label": "Explosives",
+    "description": "Raid supplies for a short and noisy evening.",
+    "items": [
+      "Satchel Charge x8",
+      "Timed Explosive Charge x4",
+      "Rockets x4",
+      "Gunpowder x3,000"
+    ],
+    "visible": true
+  }
+]

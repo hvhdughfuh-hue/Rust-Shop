@@ -9,6 +9,9 @@ out
 .env.local
 .env.*.local
 
+# npm cache
+.npm-cache/
+
 # SQLite local DB
 dev.db
 *.sqlite

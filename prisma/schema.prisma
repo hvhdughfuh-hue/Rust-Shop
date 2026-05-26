@@ -1,0 +1,92 @@
+// Rust Store - Prisma Schema
+// SQLite database for development, can be swapped to PostgreSQL for production
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  steamId64 String   @unique
+  username  String
+  avatarUrl String
+  balance   Float    @default(0)
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  privileges        ActivePrivilege[]
+  transactions      Transaction[]
+  auditLogsAsAdmin  AuditLog[]        @relation("AuditAdmin")
+  auditLogsAsTarget AuditLog[]        @relation("AuditTarget")
+}
+
+model ActivePrivilege {
+  id          Int      @id @default(autoincrement())
+  tier        String
+  activatedAt DateTime @default(now())
+  expiresAt   DateTime
+  userId      Int
+
+  user      User       @relation(fields: [userId], references: [id])
+  kitClaims KitClaim[]
+}
+
+model KitClaim {
+  id          Int      @id @default(autoincrement())
+  kitName     String
+  claimedAt   DateTime @default(now())
+  privilegeId Int
+
+  privilege ActivePrivilege @relation(fields: [privilegeId], references: [id])
+}
+
+model Transaction {
+  id            Int      @id @default(autoincrement())
+  type          String // PURCHASE | CREDIT | DEBIT
+  amount        Float
+  balanceBefore Float
+  balanceAfter  Float
+  description   String
+  createdAt     DateTime @default(now())
+  userId        Int
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model AuditLog {
+  id           Int      @id @default(autoincrement())
+  adminId      Int
+  targetUserId Int
+  action       String
+  amount       Float?
+  reason       String?
+  createdAt    DateTime @default(now())
+
+  admin  User @relation("AuditAdmin", fields: [adminId], references: [id])
+  target User @relation("AuditTarget", fields: [targetUserId], references: [id])
+}
+
+model Kit {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  label       String
+  description String?
+  visible     Boolean   @default(true)
+  items       KitItem[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model KitItem {
+  id    Int  @id @default(autoincrement())
+  kitId Int
+  name  String
+
+  kit Kit @relation(fields: [kitId], references: [id])
+}
