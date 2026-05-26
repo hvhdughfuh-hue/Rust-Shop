@@ -1,0 +1,30 @@
+node_modules
+
+# Next.js
+.next
+out
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# SQLite local DB
+dev.db
+*.sqlite
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Lockfiles (exclude if you want to track them)
+pnpm-lock.yaml
+yarn.lock
